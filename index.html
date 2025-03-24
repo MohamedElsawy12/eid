@@ -27,10 +27,11 @@
         border: none;
         font-size: 1em;
         padding-bottom: 0.5em;
-        border-bottom: 2px solid #ccc;
+        border: 2px solid #ccc;
         text-align: center;
         outline: none;
         color: #fff;
+        margin-bottom: 5px;
       }
 
       .controls__btn {
@@ -90,21 +91,22 @@
     </style>
   </head>
   <body>
-    <h1>إضافة نص إلى الصورة وحفظها مع النص المضاف</h1>
+    <h1>بطاقه معايده اتحاد الشباب التقدمي</h1>
     <div class="page-wrap">
       <div class="controls">
-        <label class="controls__label" for="name">النص المطلوب إضافته:</label>
+        <label class="controls__label" for="name">ادخل اسمك </label>
         <input class="controls__input" id="name" type="text" value="" />
+        <div style="display: none">
+          <label class="controls__label" for="top"
+            >الموضع العلوي (Top Position):</label
+          >
+          <input class="controls__input" id="top" type="number" value="50" />
 
-        <label class="controls__label" for="top"
-          >الموضع العلوي (Top Position):</label
-        >
-        <input class="controls__input" id="top" type="number" value="50" />
-
-        <label class="controls__label" for="left"
-          >الموضع الأيسر (Left Position):</label
-        >
-        <input class="controls__input" id="left" type="number" value="50" />
+          <label class="controls__label" for="left"
+            >الموضع الأيسر (Left Position):</label
+          >
+          <input class="controls__input" id="left" type="number" value="50" />
+        </div>
       </div>
 
       <div id="canvas-wrap">
@@ -147,14 +149,14 @@
       // دالة لرسم النص داخل الـ canvas
       function DrawTextOnCanvas() {
         // الحصول على القيم الجديدة لموقع النص
-        var topPos = parseInt(document.getElementById("top").value, 30);
-        var leftPos = parseInt(document.getElementById("left").value, 10);
+        var topPos = canvas.height - 50; // تحديد الموضع العلوي للنص ليكون 50px من الأسفل
+        var leftPos = parseInt(document.getElementById("left").value, 10); // الحصول على الموضع الأيسر من المدخل
 
         // تغيير لون النص إلى الأسود
         ctx.fillStyle = "black"; // تعديل اللون إلى الأسود
         ctx.textBaseline = "middle";
-        ctx.font = "50px 'Montserrat'";
-        ctx.fillText(text_title, leftPos, topPos);
+        ctx.font = "30px 'Montserrat'"; // تصغير حجم الخط إلى 30px
+        ctx.fillText(text_title, leftPos, topPos); // رسم النص في الموضع الجديد
       }
 
       // دالة للتحكم بالنص المعروض على الصورة
